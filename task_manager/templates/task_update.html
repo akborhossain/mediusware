@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="text-center alert alert-danger">Task Manager</h2>
+<h4>Update Task</h4>
+<form action="" method="POST" novalidate enctype="multipart/form-data"> {% csrf_token %}
+    {{ form.as_p }}
+    <div class="d-grid gap-2 col-6 mx-auto"></div>
+    <input class="btn btn-primary" type="submit" value="Update">
+</form>
+{% endblock content %}
