@@ -9,6 +9,7 @@ from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.views import View
 from django.shortcuts import get_object_or_404
+from django.http import Http404
 from .models import User,Task
 from .forms import LoginForm
 from django.contrib.auth.models import User, Group
@@ -20,6 +21,10 @@ from rest_framework.views import APIView
 from .serializers import TaskSerializer
 from .filter import *
 from rest_framework import status
+from django.core.paginator import Paginator
+from django.db.models import Case, CharField, Value, When
+
+
 class Registration(View):
     template_name='register.html'
     def get(self, request):
@@ -52,15 +57,23 @@ class CreateTaskView(View):
         
         return render(request, self.template_name, {'form': form})
     
-from django.core.paginator import Paginator
+
 
 class TaskListView(View):
     template_name = 'task_list.html'
 
     @method_decorator(login_required(login_url='user_login'))
     def get(self, request):
+
+        priority_ordering = Case(
+            When(priority='high', then=Value(1)),
+            When(priority='medium', then=Value(2)),
+            When(priority='low', then=Value(3)),
+            default=Value(4),
+            output_field=CharField(),
+        )
         # Retrieve tasks for the currently logged-in user
-        tasks_list = Task.objects.all().order_by('-creation_date')  # Ordering tasks by creation_date
+        tasks_list = Task.objects.all().annotate(priority_order=priority_ordering).order_by('priority_order') # Ordering tasks by priority.
 
         myFilter=TaskFilter(request.GET, queryset=tasks_list)
         tasks_list=myFilter.qs
@@ -137,7 +150,7 @@ class TaskUpdateView(View):
             return redirect('task_list')  # or any other appropriate action
 
 from django.contrib import messages
-from django.shortcuts import get_object_or_404, redirect
+
 
 class TaskDeletionView(View):
     template_name = 'task_deletion.html'
@@ -262,7 +275,7 @@ def update(request, id):
 
 #class base CRUD API
 
-from django.http import Http404
+
 @method_decorator(login_required(login_url='user_login'), name='dispatch')
 class TaskAPI(APIView):
     def get(self,request, pk=None, format=None):
