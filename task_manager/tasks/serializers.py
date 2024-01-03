@@ -3,9 +3,9 @@ from rest_framework import serializers
 from .models import Task
 
 PRIORITY_CHOICES = [
-    ('LOW', 'Low'),
-    ('MEDIUM', 'Medium'),
-    ('HIGH', 'High'),
+    ('low', 'Low'),
+    ('medium', 'Medium'),
+    ('high', 'High'),
 ]
 
 

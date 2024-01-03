@@ -23,6 +23,8 @@ from .filter import *
 from rest_framework import status
 from django.core.paginator import Paginator
 from django.db.models import Case, CharField, Value, When
+from rest_framework.generics import ListCreateAPIView,RetrieveUpdateDestroyAPIView
+
 
 
 class Registration(View):
@@ -354,6 +356,17 @@ class TaskAPI(APIView):
         else:
             msg={'msg':'Only superuser can delete task.'}
             return Response(msg)
+
+class TaskCreatAPI(ListCreateAPIView):
+    queryset=Task.objects.all()
+    serializer_class=TaskSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+class TaskRetriveUD(RetrieveUpdateDestroyAPIView):
+    queryset=Task.objects.all()
+    serializer_class=TaskSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
 
 
 

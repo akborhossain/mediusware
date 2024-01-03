@@ -2,7 +2,7 @@
 from django.urls import re_path
 from django.views.generic import TemplateView
 from django.urls import path
-from .views import CreateTaskView, TaskListView, TaskDeletionView,TaskCompleted ,TaskUpdateView, TaskDetailsView,LoginView,LogoutView,TaskAPI,SearchView,Registration
+from .views import CreateTaskView, TaskListView, TaskDeletionView,TaskCompleted ,TaskCreatAPI,TaskRetriveUD,TaskUpdateView, TaskDetailsView,LoginView,LogoutView,TaskAPI,SearchView,Registration
 
 
 urlpatterns = [
@@ -18,7 +18,6 @@ urlpatterns = [
     path('logout/',LogoutView.as_view(),name='user_logout'),
     path('search/',SearchView.as_view(),name='search'),
     path('complete/<int:id>/',TaskCompleted.as_view(),name='complete'),
-]
-urlpatterns += [
-    re_path(r'^.*/$', TemplateView.as_view(template_name='404.html'), name='catch-all'),
+    path('taskapi/', TaskCreatAPI.as_view(), name='taskapi'),
+    path('taskapi/<int:pk>/',TaskRetriveUD.as_view()),
 ]
