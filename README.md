@@ -27,3 +27,4 @@ https://github.com/akborhossain/mediusware.git
 
 
 ## Only superuser can create, update and delete task. Normal user can see and partial update.
+### Run the projects
