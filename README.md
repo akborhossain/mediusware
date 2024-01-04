@@ -8,7 +8,7 @@
 3. Run the following command to create a new virtual environment named `env`:
    ```bash
    virtualenv env
-4. cd env
-5. cd Scripts
-6. activate
-7. pip install django djangorestframework pillow psycopg2-binary django-filter markdown
+   cd env
+   cd Scripts
+   activate
+4. pip install django djangorestframework pillow psycopg2-binary django-filter markdown
