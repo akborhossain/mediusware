@@ -26,11 +26,10 @@ class TaskSerializer(serializers.ModelSerializer):
     photo1 = serializers.ImageField(max_length=None, allow_empty_file=True, required=False)  # Add this line
     photo2 = serializers.ImageField(max_length=None, allow_empty_file=True, required=False)  # Add this line
     photo3 = serializers.ImageField(max_length=None, allow_empty_file=True, required=False)  # Add this line
-
-
     class Meta:
         model = Task
         fields = ['id', 'title', 'description', 'due_date', 'priority', 'completed', 'creation_date', 'last_update', 'photo1', 'photo2', 'photo3', 'username']
 
        
-        read_only_fields = ('creation_date', 'last_update','username')
+        read_only_fields = ('creation_date', 'last_update')
+        
