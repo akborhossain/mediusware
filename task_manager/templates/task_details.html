@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 class="text-center alert alert-danger">Task Manager</h2>
+<h4>Task Details</h4>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-6">
+            <strong>Title:</strong> {{ task.title }} <br>
+            <strong>Description:</strong> {{ task.description }} <br>
+            <strong>Due Date:</strong> {{ task.due_date }} <br>
+            <strong>Priority:</strong> {{ task.priority }} <br>
+            <strong>Completed:</strong> {{ task.completed }} <br>
+            <strong>Creation Date:</strong> {{ task.creation_date }} <br>
+            <strong>Last Update:</strong> {{ task.last_update }} <br>
+        </div>
+
+    </div>
+
+    <div class="row mt-4">
+        {% if task.photo1 %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="{{ task.photo1.url }}" alt="{{ task.title }}" class="card-img-top img-fluid" style="max-height: 300px; max-width: 400px;">
+            </div>
+        </div>
+        {% endif %}
+
+        {% if task.photo2 %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="{{ task.photo2.url }}" alt="{{ task.title }}" class="card-img-top img-fluid" style="max-height: 300px; max-width: 400px;">
+            </div>
+        </div>
+        {% endif %}
+
+        {% if task.photo3 %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="{{ task.photo3.url }}" alt="{{ task.title }}" class="card-img-top img-fluid" style="max-height: 300px; max-width: 400px;">
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+
+</div>
+<div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+    {% if messages and task.completed %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+    </ul>
+    {% endif %}
+</div>
+<div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+    {% if request.user.is_superuser %}
+    <a href="{% url 'task_update' task.id %}" class="btn btn-primary">Edit</a>
+    <a href="{% url 'task_deletion' task.id %}" class="btn btn-danger">Delete</a>
+    {% endif %}
+    <a href="{% url 'complete' task.id %}" class="btn btn-primary">Conplete</a>
+</div>
+</div>
+
+{% endblock content %}
