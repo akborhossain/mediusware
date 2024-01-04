@@ -23,8 +23,14 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 
 class TaskSerializer(serializers.ModelSerializer):
     priority = serializers.ChoiceField(choices=PRIORITY_CHOICES)
+    photo1 = serializers.ImageField(max_length=None, allow_empty_file=True, required=False)  # Add this line
+    photo2 = serializers.ImageField(max_length=None, allow_empty_file=True, required=False)  # Add this line
+    photo3 = serializers.ImageField(max_length=None, allow_empty_file=True, required=False)  # Add this line
+
 
     class Meta:
         model = Task
-        fields = '__all__'  # Serialize all fields of the Task model
-        read_only_fields = ('creation_date', 'last_update')
+        fields = ['id', 'title', 'description', 'due_date', 'priority', 'completed', 'creation_date', 'last_update', 'photo1', 'photo2', 'photo3', 'username']
+
+       
+        read_only_fields = ('creation_date', 'last_update','username')
