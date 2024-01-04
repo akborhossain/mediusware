@@ -13,8 +13,9 @@
    activate
 
    pip install django djangorestframework pillow psycopg2-binary django-filter markdown
-   
+
    git clone https://github.com/akborhossain/mediusware.git
 
 Git repo link 
 https://github.com/akborhossain/mediusware.git
+4. Use POSTGRESQL as database according to your database change setting.py database section.
