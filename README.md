@@ -11,4 +11,10 @@
    cd env
    cd Scripts
    activate
-4. pip install django djangorestframework pillow psycopg2-binary django-filter markdown
+
+   pip install django djangorestframework pillow psycopg2-binary django-filter markdown
+   
+   git clone https://github.com/akborhossain/mediusware.git
+
+Git repo link 
+https://github.com/akborhossain/mediusware.git
