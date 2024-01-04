@@ -19,3 +19,9 @@
 Git repo link 
 https://github.com/akborhossain/mediusware.git
 4. Use POSTGRESQL as database according to your database change setting.py database section.
+5. import task and auth_user table to database.
+6. makemigrations and migrate
+7. login with admin and password "though" as superuser.
+
+
+only superuser can create, update and delete task. normal user can see and partial update.
