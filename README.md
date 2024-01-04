@@ -1,12 +1,14 @@
-# Mediusware python intern exam
+# Mediusware Python Intern Exam
 
-create virtual environment name env using virtualenv env
-active the virtual env. (cd env->cd Scripts-> active)
-After active env install requires:
-    django
-    rest-framework
-    pillow
-    psycopg2-binary
-    django-filter
-    markdown etc.
+## Setting Up the Development Environment
 
+### Creating a Virtual Environment
+1. Open your terminal or command prompt.
+2. Navigate to the directory where you want to create your project.
+3. Run the following command to create a new virtual environment named `env`:
+   ```bash
+   virtualenv env
+4. cd env
+5. cd Scripts
+6. activate
+7. pip install django djangorestframework pillow psycopg2-binary django-filter markdown
