@@ -356,12 +356,13 @@ class TaskAPI(APIView):
         else:
             msg={'msg':'Only superuser can delete task.'}
             return Response(msg)
-
+        
+@method_decorator(login_required(login_url='user_login'), name='dispatch')
 class TaskCreatAPI(ListCreateAPIView):
     queryset=Task.objects.all()
     serializer_class=TaskSerializer
     permission_classes = [permissions.IsAuthenticated]
-
+@method_decorator(login_required(login_url='user_login'), name='dispatch')
 class TaskRetriveUD(RetrieveUpdateDestroyAPIView):
     queryset=Task.objects.all()
     serializer_class=TaskSerializer
